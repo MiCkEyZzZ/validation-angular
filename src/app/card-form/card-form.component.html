@@ -1,1 +1,60 @@
-<p>card-form works!</p>
+<div class="flex flex-row px-10 py-10">
+  <app-card-display
+    [name]="cardForm.controls.name.value"
+    [cardNumber]="cardForm.controls.cardNumber.value"
+    [expiration]="cardForm.controls.expiration.value"
+  ></app-card-display>
+
+  <div class="flex flex-col">
+    <form class="flex flex-col" [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <app-input
+        [control]="cardForm.get('name')"
+        label="Имя"
+        className="h-8 pl-3 pr-10 border rounded"
+      ></app-input>
+
+      <app-input
+        [control]="cardForm.get('cardNumber')"
+        label="Номер карты"
+        className="h-8 pl-3 pr-10 border rounded"
+      ></app-input>
+
+      <div class="flex flex-row">
+        <app-input
+          [control]="cardForm.get('expiration')"
+          label="Истечение срока"
+          className="w-32 h-8 mr-2 pl-3 pr-10 border rounded"
+        ></app-input>
+
+        <app-input
+          [control]="cardForm.get('securityCode')"
+          label="Код безопасности"
+          className="w-32 h-8 pl-3 pr-10 border rounded"
+        ></app-input>
+      </div>
+
+      <div class="flex flex-row">
+        <app-button
+          title="Submit"
+          type="submit"
+          className="text-sm font-normal mr-2 px-5 py-2 text-white bg-green-500 border-green-500 rounded"
+          [disabled]="cardForm.invalid"
+        ></app-button>
+
+        <app-button
+          title="Reset"
+          type="button"
+          className="text-sm font-normal px-5 py-2 text-white bg-red-500 border-red-500 rounded"
+          (click)="onResetClick()"
+          [disabled]="false"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="absolute flex flex-col mt-10 ml-10 px-3 py-3 mx-auto">
+  <div class="mb-2">Содержание формы: <br><span class="text-red-500">{{ cardForm.value | json }}</span></div>
+  <div>Валидность: <span class="text-red-500">{{ cardForm.valid }}</span></div>
+  <div>Ошибки: <span class="text-red-500">{{ cardForm.controls.name.errors | json }}</span></div>
+</div>

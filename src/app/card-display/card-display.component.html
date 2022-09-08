@@ -1,1 +1,16 @@
-<p>card-display works!</p>
+<div class="flex flex-col w-80 h-full max-h-40 mr-10 px-5 py-5 border rounded-lg">
+  <div class="flex flex-col mt-5">
+    <label class="text-xs">Номер карты</label>
+    <textarea readonly class="flex items-center h-full max-h-6 text-sm border resize-none">{{ cardNumber }}</textarea>
+  </div>
+  <div class="flex flex-row mt-3">
+    <div class="flex flex-col mr-5">
+      <label class="text-xs">Имя</label>
+      <textarea readonly class="w-32 h-full max-h-6 text-sm border resize-none">{{ name }}</textarea>
+    </div>
+    <div class="flex flex-col">
+      <label class="text-xs">Истечение срока</label>
+      <textarea readonly class="w-32 h-full max-h-6 text-sm border resize-none">{{ expiration }}</textarea>
+    </div>
+  </div>
+</div>

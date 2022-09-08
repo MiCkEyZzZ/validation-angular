@@ -1,1 +1,32 @@
-<p>input works!</p>
+<fieldset class="flex flex-col mb-5">
+  <label class="text-xs ml-1">{{ label }}</label>
+  <div class="control">
+    <input
+      type="text"
+      [className]="className"
+      [ngClass]="{ 'border-red-500': showErrors() }"
+      [formControl]="control"
+    />
+  </div>
+  <ng-container *ngIf="showErrors()">
+    <p
+      class="text-xs text-red-500 mt-1"
+      *ngIf="control.errors.required"
+    >Необходимо</p>
+    <p class="text-xs text-red-500 mt-1" *ngIf="control.errors.minlength">
+      Не может быть меньше
+      {{ control.errors.minlength.requiredLength }}
+      /
+      {{ control.errors.minlength.actualLength }}
+    </p>
+    <p class="text-xs text-red-500 mt-1" *ngIf="control.errors.maxlength">
+      Не может быть больше
+      {{ control.errors.maxlength.requiredLength }}
+      /
+      {{ control.errors.maxlength.actualLength }}
+    </p>
+    <p class="text-xs text-red-500 mt-1" *ngIf="control.errors.pattern">
+      Неверный формат
+    </p>
+  </ng-container>
+</fieldset>
