@@ -38,6 +38,7 @@
           title="Submit"
           type="submit"
           className="text-sm font-normal mr-2 px-5 py-2 text-white bg-green-500 border-green-500 rounded"
+          [ngClass]="{ 'opacity-50 cursor-not-allowed': cardForm.invalid }"
           [disabled]="cardForm.invalid"
         ></app-button>
 
@@ -56,5 +57,8 @@
 <div class="absolute flex flex-col mt-10 ml-10 px-3 py-3 mx-auto">
   <div class="mb-2">Содержание формы: <br><span class="text-red-500">{{ cardForm.value | json }}</span></div>
   <div>Валидность: <span class="text-red-500">{{ cardForm.valid }}</span></div>
-  <div>Ошибки: <span class="text-red-500">{{ cardForm.controls.name.errors | json }}</span></div>
+  <div>Ошибка имени: <span class="text-red-500">{{ cardForm.controls.name.errors | json }}</span></div>
+  <div>Ошибка номера карты: <span class="text-red-500">{{ cardForm.controls.cardNumber.errors | json }}</span></div>
+  <div>Ошибка срок карты: <span class="text-red-500">{{ cardForm.controls.expiration.errors | json }}</span></div>
+  <div>Ошибка код безопасности: <span class="text-red-500">{{ cardForm.controls.securityCode.errors | json }}</span></div>
 </div>
